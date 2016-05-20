@@ -26,13 +26,15 @@
         </Border>
         
         <Border Background="LightGray" Grid.Column="0" Grid.Row="1">
-            <ListBox Background="Transparent" >
-                <ListBoxItem HorizontalContentAlignment="Stretch">
-                    <Border Background="BurlyWood">
-                        <Image Height="40" Stretch="UniformToFill" Source="http://cdn.theatlantic.com/assets/media/img/mt/2016/01/solo/lead_large.jpg?1452549010" ></Image>
-                        <!--<TextBlock Text="Han Solo"></TextBlock>-->
-                    </Border>
-                </ListBoxItem>
+            <ListBox x:Name="CharactersListBox" SelectionChanged="OnCharacterSelectionChanged" Background="Transparent" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="BurlyWood">
+                            <Image Height="40" Stretch="UniformToFill" Source="http://cdn.theatlantic.com/assets/media/img/mt/2016/01/solo/lead_large.jpg?1452549010" ></Image>
+                            <!--<TextBlock Text="Han Solo"></TextBlock>-->
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </Border>
         
@@ -52,7 +54,7 @@
                 <ProgressBar Grid.Row="1" Visibility="Hidden" IsIndeterminate="True" x:Name="NamedProgressBar"></ProgressBar>
                 <ScrollViewer Grid.Row="1">
                     <StackPanel>
-                        <TextBox Text="Han"></TextBox>
+                        <TextBox x:Name="CharacterName" Text="Han"></TextBox>
                         <PasswordBox></PasswordBox>
                         <TextBlock Text="Solo"></TextBlock>
                         <TextBlock Text="Leia"></TextBlock>

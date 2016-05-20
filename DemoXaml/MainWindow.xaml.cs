@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using Models;
 
 namespace DemoXaml
 {
@@ -12,6 +14,11 @@ namespace DemoXaml
         public MainWindow()
         {
             InitializeComponent();
+
+            var characters = new List<Character>();
+            characters.Add(new Character("Leia"));
+
+            CharactersListBox.ItemsSource = characters;
         }
 
         /// <summary>
@@ -36,6 +43,14 @@ namespace DemoXaml
         {
             var dragAndDropView = new DragAndDropView("Blblblblbl");
             dragAndDropView.ShowDialog();
+        }
+
+        private void OnCharacterSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var grid = e.AddedItems[0] as Grid;
+            var character = (Character)e.AddedItems[0];
+
+            CharacterName.Text = character.Name;
         }
     }
 }
