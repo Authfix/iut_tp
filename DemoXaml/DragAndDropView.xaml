@@ -1,0 +1,29 @@
+﻿<Window x:Class="DemoXaml.DragAndDropView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoXaml"
+        mc:Ignorable="d"
+        Title="DragAndDropView" Height="300" Width="300">
+
+    <Grid Background="Bisque">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1">
+            <TextBox x:Name="NamedTextBox"></TextBox>
+        </Border>
+
+        <Frame Grid.Row="1" NavigationUIVisibility="Visible" />
+
+    </Grid>
+
+
+
+
+</Window>
