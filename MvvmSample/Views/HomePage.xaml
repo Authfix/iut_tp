@@ -15,18 +15,32 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="7*" />
         </Grid.ColumnDefinitions>
-        
-        <ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedCharacter, Mode=TwoWay}">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="models:Character">
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding Surname}"></TextBlock>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
+
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <WrapPanel HorizontalAlignment="Right">
+                <Button Content="Supprimer" Margin="4" Command="{Binding DeleteCharacterCommand}"></Button>
+                <Button Content="Ajouter" Margin="4" ></Button>
+            </WrapPanel>
+
+            <ListBox Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedCharacter, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="models:Character">
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Surname}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+
         <Border Grid.Column="1">
             <ScrollViewer>
                 <StackPanel>
