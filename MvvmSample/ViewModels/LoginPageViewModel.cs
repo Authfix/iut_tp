@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using MvvmSample.Views;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -23,8 +24,20 @@ namespace MvvmSample.ViewModels
             _viewToOpen = viewToOpen;
         }
 
-        private string _login;
+        /// <summary>
+        /// Gets value indicating if the view model is busy
+        /// </summary>
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            private set
+            {
+                _isBusy = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private string _login;
         /// <summary>
         /// Gets or sets the user login
         /// Update the <see cref="LogUserInCommand"/>
@@ -40,6 +53,8 @@ namespace MvvmSample.ViewModels
         }
 
         private readonly DelegateCommand _logUserInCommand;
+        private bool _isBusy;
+
         /// <summary>
         /// Gets the log user in command
         /// </summary>
@@ -60,11 +75,16 @@ namespace MvvmSample.ViewModels
         /// <summary>
         /// Log a user into the application
         /// </summary>
-        private void LogUserIn()
+        private async void LogUserIn()
         {
-            _viewToOpen.Show();
+            IsBusy = true;
+
+            await Task.Delay(2000);
 
             _currentView.Close();
+            _viewToOpen.Show();
+
+            IsBusy = false;
         }
     }
 }

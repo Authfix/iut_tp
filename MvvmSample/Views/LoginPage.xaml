@@ -3,14 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:MvvmSample.Converters"
         mc:Ignorable="d"
         Title="LoginPage" Height="300" Width="300">
-    
+
+    <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Window.Resources>
     <Grid>
+
         <StackPanel VerticalAlignment="Center" Margin="24">
             <TextBox Margin="8" Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <Button Margin="8" Content="Connection" IsDefault="True" Command="{Binding LogUserInCommand}" />
         </StackPanel>
+
+        <Border Background="White" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressBar Margin="24" VerticalAlignment="Center" IsIndeterminate="True" Height="20"></ProgressBar>
+        </Border>
+
     </Grid>
     
 </Window>
