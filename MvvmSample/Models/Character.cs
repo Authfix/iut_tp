@@ -16,11 +16,11 @@
         /// <summary>
         /// Gets the character's name
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the character's surname
         /// </summary>
-        public string Surname { get; private set; }
+        public string Surname { get; set; }
     }
 }

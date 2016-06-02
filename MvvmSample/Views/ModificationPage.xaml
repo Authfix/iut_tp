@@ -1,0 +1,20 @@
+﻿<Window x:Class="MvvmSample.Views.ModificationPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MvvmSample.Views"
+        mc:Ignorable="d"
+        Title="ModificationPage" Height="300" Width="300">
+    <Grid>
+        
+        <StackPanel >
+            <TextBlock Text="Nom"></TextBlock>
+            <TextBox Text="{Binding ModificationCharacter.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="Surnom"></TextBlock>
+            <TextBox Text="{Binding ModificationCharacter.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Content="Créer" Command="{Binding ValidateCommand}"></Button>
+        </StackPanel>
+        
+    </Grid>
+</Window>

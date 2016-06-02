@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using MvvmSample.Models;
+using MvvmSample.Views;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -11,12 +12,15 @@ namespace MvvmSample.ViewModels
     {
         public HomePageViewModel()
         {
-            _items = new ObservableCollection<Character>();
-            _items.Add(new Character("C3PO", "Boite de conserve"));
-            _items.Add(new Character("Z6PO", "Boite de conserve francaise"));
-            _items.Add(new Character("Chewbacca", "Chewy"));
+            _items = new ObservableCollection<Character>
+            {
+                new Character("C3PO", "Boite de conserve"),
+                new Character("Z6PO", "Boite de conserve francaise"),
+                new Character("Chewbacca", "Chewy")
+            };
 
             _deleteCharacterCommand = new DelegateCommand(ExecuteDeleteCharacter, CanDeleteCharacter);
+            _createCharacterCommand = new DelegateCommand(ExecuteCreateCharacter);
         }
 
         private readonly ObservableCollection<Character> _items;
@@ -52,6 +56,15 @@ namespace MvvmSample.ViewModels
             get { return _deleteCharacterCommand;}
         }
 
+        private readonly DelegateCommand _createCharacterCommand;
+        /// <summary>
+        /// Gets the modification character command
+        /// </summary>
+        public ICommand CreateCharacterCommand
+        {
+            get { return _createCharacterCommand; }
+        }
+
         /// <summary>
         /// Delete the character
         /// </summary>
@@ -67,6 +80,22 @@ namespace MvvmSample.ViewModels
         private bool CanDeleteCharacter()
         {
             return _selectedCharacter != null;
+        }
+
+        /// <summary>
+        /// Create a character
+        /// </summary>
+        private void ExecuteCreateCharacter()
+        {
+            var character = new Character(string.Empty, string.Empty);
+            var createPage = new ModificationPage(character);
+
+            createPage.ShowDialog();
+
+            if (!string.IsNullOrEmpty(character.Name) && !string.IsNullOrEmpty(character.Surname))
+            {
+                _items.Add(character);
+            }
         }
     }
 }

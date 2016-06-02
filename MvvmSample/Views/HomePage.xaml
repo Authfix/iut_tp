@@ -25,7 +25,7 @@
 
             <WrapPanel HorizontalAlignment="Right">
                 <Button Content="Supprimer" Margin="4" Command="{Binding DeleteCharacterCommand}"></Button>
-                <Button Content="Ajouter" Margin="4" ></Button>
+                <Button Content="Ajouter" Margin="4" Command="{Binding CreateCharacterCommand}"></Button>
             </WrapPanel>
 
             <ListBox Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedCharacter, Mode=TwoWay}">
